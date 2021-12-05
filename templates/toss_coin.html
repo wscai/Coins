@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+    Tossing
+{% endblock %}
+{% block content %}
+    <div style="text-align: center;"><h1>Hello, World!</h1></div>
+    <div style="text-align: center;">
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div style="text-align: center;">
+                {{ form.coin1.label }}: {{ form.coin1(id='Tossing_Form') }} ||
+                {{ form.coin2.label }}: {{ form.coin2(id='Tossing_Form') }} ||
+                {{ form.coin3.label }}: {{ form.coin3(id='Tossing_Form') }}
+            </div>
+            {{ form.submit() }}
+        </form>
+    </div>
+{% endblock %}
