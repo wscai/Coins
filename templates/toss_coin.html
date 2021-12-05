@@ -1,19 +1,59 @@
 {% extends "base.html" %}
+{% block background_img %}
+    <style>
+        body {
+            background-image: url(
+            {% if roundNum=="1" %}
+                {{ url_for('static', filename='stage1.jpg')}}
+            {% elif roundNum=="2" %}
+                {{ url_for('static', filename='stage2.jpg')}}
+            {% elif roundNum=="3" %}
+                {{ url_for('static', filename='stage3.jpg')}}
+            {% elif roundNum=="4" %}
+                {{ url_for('static', filename='stage4.jpg')}}
+            {% elif roundNum=="5" %}
+                {{ url_for('static', filename='stage5.jpg')}}
+            {% else %}
+                {{ url_for('static', filename='stage6.jpg')}}
+            {% endif %}
+            );
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+            background-position: center;
+            color: #ffffff;
+        }
+        .center-content {
+            text-align: center;
+            background: #ffffff;
+            opacity: 0.9;
+            margin: 30px;
+        }
+        .elements {
+            margin-top:10px;
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock %}
 {% block title %}
     Tossing
 {% endblock %}
 {% block content %}
-    <div style="text-align: center;"><h1>Hello, World!</h1></div>
-    <div style="text-align: center;">
-
+    <div class="center-content">
+    <div class="elements"><h1>Round {{ roundNum }}</h1></div>
+    <div class="elements"><p>数字是正面（Head），花是背面（Tail），顺序无关。记录后点击“Next”，有错误可返回修正。</p></div>
+    <hr>
+    <div class="elements">
         <form method="POST">
             {{ form.hidden_tag() }}
-            <div style="text-align: center;">
+            <div>
                 {{ form.coin1.label }}: {{ form.coin1(id='Tossing_Form') }} ||
                 {{ form.coin2.label }}: {{ form.coin2(id='Tossing_Form') }} ||
                 {{ form.coin3.label }}: {{ form.coin3(id='Tossing_Form') }}
             </div>
             {{ form.submit() }}
         </form>
+        <hr>
+    </div>
     </div>
 {% endblock %}

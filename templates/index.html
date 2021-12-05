@@ -2,8 +2,28 @@
 {% block title %}
     Home
 {% endblock %}
+{% block background_img %}
+    <style>
+        body {
+            background-image: url({{ url_for('static', filename='stage6.jpg')}});
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+            background-position: center;
+            color: #ffffff;
+        }
+        .center-content {
+            text-align: center;
+            background: #ffffff;
+            opacity: 0.9;
+        }
+    </style>
+{% endblock %}
 {% block content %}
-    <div style="text-align: center;"><h1>Hello, World!</h1></div>
-    <div style="text-align: center;"><a href="/toss_coin/c"><button>Start</button></a></div>
-
+    <div class="center-content">
+    <div><h1>金钱卦</h1></div>
+    <div><p>方便快捷给出“是否”问题的建议。请准备3个硬币，点击开始后按照指示抛六次。数字是正面（Head），花是背面（Tail）</p></div>
+    <div><a href="/toss_coin/1"><button>Start</button></a></div>
+    <hr>
+    </div>
 {% endblock %}

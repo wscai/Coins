@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html{% block html_attribs %}{% endblock html_attribs %}>
 {%- block html %}
-  <head>
+    <head>
     {%- block head %}
-    <title>{% block title %}{{title|default}}{% endblock title %}</title>
+        {% block background_img %}{% endblock background_img %}
+        <title>金钱卦 | {% block title %}{{title|default}}{% endblock title %}</title>
+        {%- block metas %}
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {%- endblock metas %}
 
-    {%- block metas %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {%- endblock metas %}
-
-    {%- block styles %}
-    <!-- Bootstrap -->
-    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
-    {%- endblock styles %}
+        {%- block styles %}
+        <!-- Bootstrap -->
+        <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+        {%- endblock styles %}
     {%- endblock head %}
   </head>
   <body{% block body_attribs %}{% endblock body_attribs %}>
@@ -26,17 +26,19 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
+                        <li><a href="/about">About</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-    {% block content %}
-    {% endblock content %}
+        {% block content %}
+        {% endblock content %}
     {% block scripts %}
     <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
     <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
     {%- endblock scripts %}
     {% endblock body %}
+
   </body>
 {%- endblock html %}
 </html>
