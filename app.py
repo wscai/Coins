@@ -4,21 +4,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 import random
 from wtforms.validators import DataRequired
-
+from gua import gua_64
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'l4sn8y194aaaacccc'
 Bootstrap(app)
 app.debug = True
-gua_8 = {
-    '000': '',
-    '001': '',
-    '010': '',
-    '011': '',
-    '100': '',
-    '101': '',
-    '110': '',
-    '111': ''
-}
+
 
 class TossingForm(FlaskForm):
     choices = ['Head', 'Tail']
@@ -29,21 +20,20 @@ class TossingForm(FlaskForm):
 
 def result_analyzer(outcome):
     gua = ''
-    don = ''
     for i in range(len(outcome)//3):
         yang_count = outcome[i*3:i*3+3].count('1')
         if yang_count==1:
             gua+='1'
-            don+='0'
         elif yang_count==2:
             gua+='0'
-            don+='0'
         elif yang_count == 3:
             gua+='1'
-            don+='1'
         else:
             gua+='0'
-            don+='1'
+    if gua in gua_64:
+        return gua_64[gua]
+    else:
+        return '跳脱常理但无所成。'
 
 
 
@@ -78,8 +68,7 @@ def toss_coin(outcome):
 
 @app.route('/result/<outcome>')
 def result(outcome):
-    print(outcome)
-    return render_template(r'result.html',outcome=outcome)
+    return render_template(r'result.html',outcome=result_analyzer(outcome[1:]))
 
 @app.route('/about')
 def about():

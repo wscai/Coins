@@ -2,10 +2,28 @@
 {% block title %}
     Result
 {% endblock %}
+{% block background_img %}
+    <style>
+        body {
+            background-image: url({{ url_for('static', filename='stage6.jpg')}});
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+            background-position: center;
+            color: #ffffff;
+        }
+        .center-content {
+            text-align: center;
+            background: #ffffff;
+            opacity: 0.9;
+            padding: 1cm;
+        }
+    </style>
+{% endblock %}
 {% block content %}
-    <div style="text-align: center;"><h1>哈哈</h1></div>
-    <div style="text-align: center;">
-        <p>诸事不宜，睡吧睡吧。</p>
+    <div class="center-content"><h1>结果</h1></div>
+    <div class="center-content">
+        <p>{{ outcome }}</p>
     </div>
-    <div style="text-align: center;"><a href="/"><button>Home</button></a></div>
+    <div class="center-content"><a href="/"><button>Home</button></a></div>
 {% endblock %}
